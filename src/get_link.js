@@ -6,7 +6,9 @@ const getLink = async url => {
     const html = await getHtml(url);
     const $ = cheerio.load(html);
     const buttons = $(".the-button");
-    const epsLink = $($(".fa-list-ul").parent()).parent().attr("href");
+    const animeLink = $($(".fa-list-ul").parent())
+      .parent()
+      .attr("href");
     const links = [];
     buttons.each((_buttonIndex, buttonElement) => {
       const onclickValue = $(buttonElement).attr("onclick");
@@ -20,17 +22,17 @@ const getLink = async url => {
         links.push({ label, url });
       }
     });
-    return { links, epsLink };
+    return { animeLink, links };
   } catch (error) {
     throw error;
   }
 };
 
-const url = `https://animeindo.co/one-piece-episode-097/`;
-getLink(url)
-  .then(console.log)
-  .catch(err => {
-    console.log({ err });
-  });
+// const url = `https://animeindo.co/one-piece-movie-14-stampede/`;
+// getLink(url)
+//   .then(console.log)
+//   .catch(err => {
+//     console.log({ err });
+//   });
 
 module.exports = { getLink };

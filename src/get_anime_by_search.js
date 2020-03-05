@@ -1,10 +1,13 @@
 const cheerio = require("cheerio");
 const { getHtml } = require("./util/get_html");
+const CONSTANT = require("./constant");
 
-const getAnimeBySearch = async (keyword) => {
-  const baseUrl = `https://animeindo.co/`
+const getAnimeBySearch = async keyword => {
   try {
-    let url = baseUrl + `?cat=s&s=${keyword.replace(' ','+')}&post_type=anime`;
+    let url = `${CONSTANT.BASE_URL}?cat=s&s=${keyword.replace(
+      " ",
+      "+"
+    )}&post_type=anime`;
     const html = await getHtml(url);
     const $ = cheerio.load(html);
     const animes = $(".series-card");
@@ -35,6 +38,8 @@ const getAnimeBySearch = async (keyword) => {
   }
 };
 
-getAnimeBySearch("one piece")
-  .then(r => console.log(r))
-  .catch(console.log);
+// getAnimeBySearch("one piece")
+//   .then(r => console.log(r))
+//   .catch(console.log);
+
+module.exports = { getAnimeBySearch };

@@ -1,9 +1,10 @@
 const cheerio = require("cheerio");
 const { getHtml } = require("./util/get_html");
+const CONSTANT = require("./constant");
 
 const getGenre = async () => {
   try {
-    url = `https://animeindo.co/genre-list/`;
+    url = `${CONSTANT.BASE_URL}/genre-list/`;
     const html = await getHtml(url);
     const $ = cheerio.load(html);
     const genres = $(".the-animelist-text").children();
@@ -27,6 +28,8 @@ const getGenre = async () => {
   }
 };
 
-getGenre()
-  .then(r => console.log(r[0]))
-  .catch(console.log);
+// getGenre()
+//   .then(r => console.log(r[0]))
+//   .catch(console.log);
+
+module.exports = { getGenre };

@@ -7,7 +7,6 @@ const getAnimeByGenre = async (baseUrl, page) => {
     if (page > 1) {
       url = url + "page/" + page;
     }
-    console.log(url)
     const html = await getHtml(url);
     const $ = cheerio.load(html);
     const animes = $(".series-card");
@@ -38,6 +37,8 @@ const getAnimeByGenre = async (baseUrl, page) => {
   }
 };
 
-getAnimeByGenre("https://animeindo.co/genres/action/", 1)
-  .then(r => console.log(r))
-  .catch(console.log);
+module.exports = { getAnimeByGenre };
+
+// getAnimeByGenre("https://animeindo.co/genres/action/", 1)
+//   .then(r => console.log(r))
+//   .catch(console.log);

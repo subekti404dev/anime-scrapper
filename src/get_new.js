@@ -1,9 +1,10 @@
 const cheerio = require("cheerio");
 const { getHtml } = require("./util/get_html");
+const CONSTANT = require("./constant");
 
 const getNew = async () => {
   try {
-    const url = `https://animeindo.co`;
+    const url = CONSTANT.BASE_URL;
     const html = await getHtml(url);
     const $ = cheerio.load(html);
     const sections = $(".row.mb40");
@@ -83,6 +84,8 @@ const getNew = async () => {
   }
 };
 
-getNew()
-    .then(list => console.log(list[0].list))
-  .catch(console.log);
+// getNew()
+//   .then(list => console.log(list[0].list))
+//   .catch(console.log);
+
+module.exports = { getNew };
