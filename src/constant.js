@@ -1,5 +1,5 @@
 const CONSTANT = {
-    BASE_URL : 'https://animeindo.co'
+    BASE_URL : 'https://animeindo.fun'
 }
 
 module.exports = CONSTANT;
